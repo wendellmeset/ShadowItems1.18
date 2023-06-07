@@ -60,7 +60,7 @@ public class ShadowItems implements ModInitializer {
 
     private void loadItemRegistry() {
         try {
-            InputStream inputStream = FabricLoader.getInstance().getModContainer(MOD_ID).get().getRootPath().resolve("resources/itemRegistry.txt").toUri().toURL().openStream();
+            InputStream is = ShadowItems.class.getClassLoader().getResourceAsStream("itemRegistry.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
 
             String line;
