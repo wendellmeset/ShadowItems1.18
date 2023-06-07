@@ -13,7 +13,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -66,7 +66,7 @@ public class ShadowItems implements ModInitializer {
                     if (item != null) {
                         ItemStack stack = new ItemStack(item);
                         if (!nbtBase64.isEmpty()) {
-                            stack.setTag(CompoundTag.fromTag(Base64.getDecoder().decode(nbtBase64)));
+                            stack.setTag(NbtCompound.fromTag(Base64.getDecoder().decode(nbtBase64)));
                         }
 
                         ItemGroup group = getItemGroupByName(itemGroup);
