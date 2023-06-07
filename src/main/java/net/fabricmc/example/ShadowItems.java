@@ -13,6 +13,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -24,44 +25,34 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class ShadowItems implements ModInitializer {
-    // This logger is used to write text to the console and the log file.
-    // It is considered best practice to use your mod id as the logger's name.
-    // That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger("shadowitems");
-
-    // Mod ID
     public static final String MOD_ID = "shadowitems";
 
     @Override
     public void onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
-
         LOGGER.info("Hello Fabric world! Shadow Items Has Loaded!");
-
         loadItemRegistry();
     }
 
     public static final ItemGroup EXPLOITS_GROUP = FabricItemGroupBuilder.create(
             new Identifier(MOD_ID, "exploits"))
-            .icon(() -> new ItemStack(Blocks.ARMOR_STAND))
+            .icon(() -> new ItemStack(Blocks.ARMOR_STAND.asItem()))
             .build();
 
     public static final ItemGroup GRIEF_GROUP = FabricItemGroupBuilder.create(
             new Identifier(MOD_ID, "grief"))
-            .icon(() -> new ItemStack(Blocks.TNT))
+            .icon(() -> new ItemStack(Blocks.TNT.asItem()))
             .build();
 
     public static final ItemGroup SPECIAL_GROUP = FabricItemGroupBuilder.create(
             new Identifier(MOD_ID, "special"))
-            .icon(() -> new ItemStack(Blocks.STRUCTURE_VOID))
+            .icon(() -> new ItemStack(Blocks.STRUCTURE_VOID.asItem()))
             .build();
 
     private void loadItemRegistry() {
         try {
             InputStream is = ShadowItems.class.getClassLoader().getResourceAsStream("itemRegistry.txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -75,7 +66,7 @@ public class ShadowItems implements ModInitializer {
                     if (item != null) {
                         ItemStack stack = new ItemStack(item);
                         if (!nbtBase64.isEmpty()) {
-                            stack.setTag(item.fromTag(Base64.getDecoder().decode(nbtBase64)));
+                            stack.setTag(CompoundTag.fromTag(Base64.getDecoder().decode(nbtBase64)));
                         }
 
                         ItemGroup group = getItemGroupByName(itemGroup);
