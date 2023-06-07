@@ -36,7 +36,7 @@ public class ShadowItems implements ModInitializer {
 
     public static final ItemGroup EXPLOITS_GROUP = FabricItemGroupBuilder.create(
             new Identifier(MOD_ID, "exploits"))
-            .icon(() -> new ItemStack(Blocks.ARMOR_STAND.asItem()))
+            .icon(() -> new ItemStack(Items.ARMOR_STAND))
             .build();
 
     public static final ItemGroup GRIEF_GROUP = FabricItemGroupBuilder.create(
@@ -66,7 +66,7 @@ public class ShadowItems implements ModInitializer {
                     if (item != null) {
                         ItemStack stack = new ItemStack(item);
                         if (!nbtBase64.isEmpty()) {
-                            stack.setTag(NbtCompound.fromTag(Base64.getDecoder().decode(nbtBase64)));
+                            stack.setTag(NbtCompound.fromTag(NbtUtils.fromBase64(nbtBase64)));
                         }
 
                         ItemGroup group = getItemGroupByName(itemGroup);
