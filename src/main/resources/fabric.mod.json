@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "shadowitems",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "ShadowItems",
+  "description": "Turns the creative inventory shadow client items into a standalone mod!",
   "authors": [
-    "Me!"
+    "wendellmeset"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/wendellmeset/ShadowItems1.18"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/shadowitems/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.example.shadowitems.ShadowItemsMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "shadowitems.mixins.json"
   ],
 
   "depends": {
