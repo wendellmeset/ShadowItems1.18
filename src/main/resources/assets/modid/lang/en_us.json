@@ -1,5 +1,5 @@
 {
-  "itemGroup.modid.exploits": "Exploits",
-  "itemGroup.modid.grief": "Grief",
-  "itemGroup.modid.special": "Special"
+  "itemGroup.shadowitems.exploits": "Exploits",
+  "itemGroup.shadowitems.grief": "Grief",
+  "itemGroup.shadowitems.special": "Special"
 }
