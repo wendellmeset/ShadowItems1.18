@@ -96,4 +96,3 @@ public class ShadowItems implements ModInitializer {
         }
     }
 }
-
